@@ -1,6 +1,6 @@
 import React from "react";
 
-function Guess() {
+function Guess({ results, setResults }) {
   const [guess, setGuess] = React.useState('');
 
   function submitGuess(event) {
@@ -10,7 +10,8 @@ function Guess() {
           window.alert('Guess must be 5 chars :)');
           return;
       }
-      console.log({ guess });
+      const nextResults = [...results, thisGuess];
+      setResults(nextResults);
       setGuess('');
   }
   return (
