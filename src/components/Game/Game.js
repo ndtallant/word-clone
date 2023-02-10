@@ -12,9 +12,7 @@ console.info({ answer });
 function Game() {
   return (
       <>
-      Put a game here!
       <Guess />
-
       </>
   );
 }

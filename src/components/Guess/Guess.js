@@ -4,25 +4,29 @@ function Guess() {
   const [guess, setGuess] = React.useState('');
 
   function submitGuess(event) {
+      event.preventDefault();
       const thisGuess = guess;
       if (thisGuess.length !== 5) {
-          window.alert('Guess must be 5 chars!');
+          window.alert('Guess must be 5 chars :)');
           return;
       }
-      event.preventDefault();
-      console.log(guess);
+      console.log({ guess });
       setGuess('');
   }
   return (
     <>
-    <form onSubmit={submitGuess} class="guess-input-wrapper">
-      <label for="guess-input">Enter guess:</label>
+    <form onSubmit={submitGuess} className="guess-input-wrapper">
+      <label htmlFor="guess-input">Enter guess:</label>
       <input 
+        required
+        minLength={5}
+        maxLength={5}
         id="guess-input" 
         type="text" 
         value={guess}
         onChange={event => {
-            setGuess(event.target.value.toUpperCase());
+            const nextGuess = event.target.value.toUpperCase();
+            setGuess(nextGuess);
         }}
       />
     </form>
