@@ -16,7 +16,7 @@ function Game() {
   const [results, setResults] = React.useState([]);
   return (
       <>
-      <GuessResults results={results}/>
+      <GuessResults results={results} answer={answer}/>
       <GuessForm results={results} setResults={setResults}/>
       </>
   );
