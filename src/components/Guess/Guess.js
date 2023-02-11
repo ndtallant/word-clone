@@ -1,37 +1,17 @@
 import React from "react";
 
-function Guess({ results, setResults }) {
-  const [guess, setGuess] = React.useState('');
-
-  function submitGuess(event) {
-      event.preventDefault();
-      const thisGuess = guess;
-      if (thisGuess.length !== 5) {
-          window.alert('Guess must be 5 chars :)');
-          return;
-      }
-      const nextResults = [...results, thisGuess];
-      setResults(nextResults);
-      setGuess('');
-  }
+function Guess({ value }) {
+    console.log(value.split(''));
   return (
-    <>
-    <form onSubmit={submitGuess} className="guess-input-wrapper">
-      <label htmlFor="guess-input">Enter guess:</label>
-      <input 
-        required
-        minLength={5}
-        maxLength={5}
-        id="guess-input" 
-        type="text" 
-        value={guess}
-        onChange={event => {
-            const nextGuess = event.target.value.toUpperCase();
-            setGuess(nextGuess);
-        }}
-      />
-    </form>
-    </>);
+      <p className="guess">
+        {
+          value.split('').map((char, idx) => (
+            <span key={idx} className="cell">{char}</span>
+          ))
+        }
+      </p>
+  );
+    
 }
 
 export default Guess;
