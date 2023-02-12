@@ -1,6 +1,6 @@
 import React from "react";
 
-function GuessForm({ results, setResults }) {
+function GuessForm({ gameState, results, submitGuess }) {
   const [guess, setGuess] = React.useState('');
 
   function submitGuessForm(event) {
@@ -10,8 +10,7 @@ function GuessForm({ results, setResults }) {
           window.alert('Guess must be 5 chars :)');
           return;
       }
-      const nextResults = [...results, thisGuess];
-      setResults(nextResults);
+      submitGuess(thisGuess);
       setGuess('');
   }
   return (
@@ -20,6 +19,7 @@ function GuessForm({ results, setResults }) {
       <label htmlFor="guess-input">Enter guess:</label>
       <input 
         required
+        disabled={gameState !== 'playing'}
         minLength={5}
         maxLength={5}
         id="guess-input" 
